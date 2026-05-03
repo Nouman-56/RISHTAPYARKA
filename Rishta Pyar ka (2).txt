@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>RISHTA PYAR KA - Islamic Matrimonial | Find Your Soulmate</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fef9f0 0%, #fff5eb 100%);
+            color: #2d1b0e;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0e1cf; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #c7a87b; border-radius: 10px; }
+
+        .app-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px 32px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            background: #ffffffcc;
+            backdrop-filter: blur(12px);
+            border-radius: 56px;
+            padding: 12px 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #ffebd2;
+        }
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #b4542c, #e28c48);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #a57355;
+        }
+        .coin-wallet {
+            background: #2c1a0e;
+            padding: 8px 22px;
+            border-radius: 40px;
+            color: #ffdd99;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        }
+        .coin-wallet i { font-size: 24px; color: #ffc107; }
+        .add-coins-btn {
+            background: #f6a45c;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 32px;
+            font-weight: 700;
+            color: #2c1a0e;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .add-coins-btn:hover { background: #ffb86b; transform: scale(0.96); }
+
+        /* Main grid */
+        .dashboard-grid {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar filters */
+        .filters-sidebar {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 32px;
+            padding: 24px 20px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            border: 1px solid #fae7d6;
+            height: fit-content;
+            position: sticky;
+            top: 24px;
+        }
+        .filter-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #e28c48;
+            padding-left: 12px;
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8b694c;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .filter-group input, .filter-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 24px;
+            border: 1px solid #f0dccb;
+            background: #fefaf5;
+            font-weight: 500;
+            outline: none;
+            transition: 0.2s;
+        }
+        .filter-group input:focus, .filter-group select:focus {
+            border-color: #e28c48;
+            box-shadow: 0 0 0 2px #ffdec2;
+        }
+        .reset-filters {
+            background: #eee2d6;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+        .cast-section {
+            margin-top: 20px;
+            border-top: 1px dashed #f0dbc9;
+            padding-top: 20px;
+        }
+
+        /* Add Post Modal / Section */
+        .add-post-card {
+            background: white;
+            border-radius: 32px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #ffe0c4;
+        }
+        .add-post-title {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            color: #b4542c;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-field label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8b694c;
+        }
+        .form-field label .required {
+            color: #e28c48;
+            margin-left: 3px;
+        }
+        .form-field input, .form-field select {
+            padding: 10px 14px;
+            border-radius: 28px;
+            border: 1px solid #f0dccb;
+            background: #fefaf5;
+        }
+        .submit-rishta {
+            background: #e28c48;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+        .submit-rishta:hover { background: #c56f2e; transform: scale(0.98); }
+        .edit-note {
+            font-size: 12px;
+            color: #a66a38;
+            margin-top: 12px;
+            text-align: center;
+            background: #fef3ea;
+            padding: 8px;
+            border-radius: 28px;
+        }
+
+        /* Profiles area */
+        .profiles-container { flex: 1; }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .results-count {
+            background: #f0e2d4;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .profile-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: 0.25s ease;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+            border: 1px solid #fbead9;
+        }
+        .profile-card:hover { transform: translateY(-5px); }
+        .card-header {
+            background: linear-gradient(115deg, #fff0e4, #ffe6d4);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #e9b27c, #c9834a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.1);
+        }
+        .basic-info h3 { font-size: 20px; font-weight: 700; }
+        .basic-info p { color: #ab7a54; font-weight: 500; }
+        .details-list {
+            padding: 18px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #f7e8dd;
+        }
+        .detail-badge {
+            background: #fef3ea;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .detail-badge i { color: #e28c48; }
+        .card-footer {
+            padding: 16px 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .unhide-btn {
+            background: #c0a080;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .unhide-btn.active { background: #2f6b2f; cursor: default; opacity: 0.7; }
+        .unhide-btn:not(.active):hover { background: #e28c48; transform: scale(0.96); }
+        .phone-number {
+            background: #fef2e7;
+            padding: 6px 12px;
+            border-radius: 34px;
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .hidden-number { filter: blur(4px); background: #e9dbcf; user-select: none; }
+        .coin-required { font-size: 12px; color: #a66a38; font-weight: 500; padding: 0 20px 16px 20px; }
+        .support-note {
+            font-size: 11px;
+            color: #8b694c;
+            text-align: center;
+            padding: 8px;
+            border-top: 1px solid #f7e8dd;
+            margin-top: 8px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            background: white;
+            border: 1px solid #f0dccb;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .page-btn.active {
+            background: #e28c48;
+            color: white;
+            border-color: #e28c48;
+        }
+        .page-btn:hover:not(.active) { background: #f5e4d6; }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c1a0e;
+            color: #ffe1b3;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            z-index: 999;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 780px) {
+            .app-container { padding: 16px; }
+            .filters-sidebar { flex: 0 0 100%; position: static; }
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            background: #fffaf3;
+            border-radius: 48px;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="header">
+        <div class="logo">
+            <h1>💖 RISHTA PYAR KA</h1>
+            <span>Premium Islamic Matrimony | Sincere Connections</span>
+        </div>
+        <div class="coin-wallet">
+            <i class="fas fa-coins"></i>
+            <span id="coinBalance">0</span> Coins
+            <button class="add-coins-btn" id="addCoinsBtn"><i class="fas fa-plus-circle"></i> Add 100 Coins (₹100)</button>
+        </div>
+    </div>
+
+    <!-- ADD RISHTA SECTION -->
+    <div class="add-post-card">
+        <div class="add-post-title"><i class="fas fa-plus-circle" style="color:#e28c48;"></i> ➕ ADD RISHTA</div>
+        <div class="form-row">
+            <div class="form-field"><label>Full Name <span class="required">*</span></label><input type="text" id="newName" placeholder="e.g., Ayesha Khan"></div>
+            <div class="form-field"><label>Age <span class="required">*</span></label><input type="number" id="newAge" placeholder="22"></div>
+            <div class="form-field"><label>Color/Complexion <span class="required">*</span></label><input type="text" id="newColor" placeholder="Fair, Wheatish"></div>
+            <div class="form-field"><label>Height (cm) <span class="required">*</span></label><input type="number" id="newHeight" placeholder="160"></div>
+            <div class="form-field"><label>Weight (kg) <span class="required">*</span></label><input type="number" id="newWeight" placeholder="55"></div>
+            <div class="form-field"><label>City <span class="required">*</span></label><input type="text" id="newCity" placeholder="Karachi"></div>
+            <div class="form-field"><label>Current Country <span class="required">*</span></label><input type="text" id="newCountry" placeholder="Pakistan"></div>
+            <div class="form-field"><label>Cast (Islamic) <span class="required">*</span></label>
+                <select id="newCast">
+                    <option value="">Select Cast</option>
+                </select>
+            </div>
+            <div class="form-field"><label>Profession <span class="required">*</span></label><input type="text" id="newProfession" placeholder="Doctor / Engineer"></div>
+            <div class="form-field"><label>Qualification <span class="required">*</span></label><input type="text" id="newQualification" placeholder="e.g., BA, BSc, Master, PhD"></div>
+            <div class="form-field"><label>Phone Number (will be hidden) <span class="required">*</span></label><input type="text" id="newPhone" placeholder="+92xxxxxxxxx"></div>
+        </div>
+        <button class="submit-rishta" id="submitRishtaBtn"><i class="fas fa-paper-plane"></i> RISHTA BHEJO (100 Coins deduction)</button>
+        <div class="edit-note"><i class="fas fa-phone-alt"></i> ⚡ Rishta edit karne k liye Customer Support se contact karein: support@rishtapyarka.com</div>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+            <div class="filter-title"><i class="fas fa-sliders-h"></i> Advance Filter</div>
+            <div class="filter-group">
+                <label>Age (Min - Max)</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="number" id="minAge" placeholder="Min" value="18" style="width: 50%;">
+                    <input type="number" id="maxAge" placeholder="Max" value="45" style="width: 50%;">
+                </div>
+            </div>
+            <div class="filter-group"><label>Color / Complexion</label><input type="text" id="colorFilter" placeholder="e.g., Fair"></div>
+            <div class="filter-group"><label>Min Height (cm)</label><input type="number" id="heightFilter" placeholder="Min Height"></div>
+            <div class="filter-group"><label>Max Weight (kg)</label><input type="number" id="weightFilter" placeholder="Max Weight"></div>
+            <div class="filter-group"><label>City</label><input type="text" id="cityFilter" placeholder="City"></div>
+            <div class="filter-group"><label>Country</label><input type="text" id="countryFilter" placeholder="Country"></div>
+            <div class="filter-group">
+                <label>Islamic Cast</label>
+                <select id="castFilter"><option value="">All Casts</option></select>
+            </div>
+            <div class="filter-group"><label>Qualification</label><input type="text" id="qualificationFilter" placeholder="e.g., BA, BSc, Master"></div>
+            <button class="reset-filters" id="resetFiltersBtn"><i class="fas fa-undo-alt"></i> Reset Filters</button>
+            <div class="cast-section"><small><i class="fas fa-mosque"></i> Complete Islamic Cast Sessions</small></div>
+        </aside>
+
+        <div class="profiles-container">
+            <div class="results-header">
+                <div class="results-count" id="resultCountDisplay">Showing 0 Rishtay</div>
+                <div><i class="fas fa-heart" style="color:#e28c48;"></i> <strong>Halal Connections</strong></div>
+            </div>
+            <div id="profilesGrid" class="profiles-grid"></div>
+            <div id="paginationContainer" class="pagination"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ======================== COMPLETE CAST LIST ========================
+    const completeCastList = [
+        "Sheikh", "Syed", "Mughal", "Pathan", "Ansari", "Qureshi", "Arain", "Rajput",
+        "JUTT", "GUJJAR", "MALIK", "AWAN", "DAR", "LONE", "MIR", "WANI", "MEMON", "SOOMRO",
+        "JUNEJO", "BALOCH", "MENGAL", "JAMALI", "AFRIDI", "PUNJABI PATHAN", "YOUSAFZAI",
+        "KHATTAK", "ORAKZAI", "SIDDIQUI", "FAROOQI"
+    ];
+    
+    // Qualification list for random generation
+    const qualificationsList = ["Matric", "Intermediate", "BA", "BSc", "MA", "MSc", "MBA", "B.Com", "M.Com", "PhD", "MBBS", "B.E", "LLB"];
+    
+    // ---------- DATA ----------
+    let profiles = [];
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 10;
+    
+    let userCoins = 150;  // initial coins for demo
+
+    // Helper: generate random profiles (30 base for better pagination) using new cast list
+    const cities = ["Karachi", "Lahore", "Islamabad", "Dubai", "Istanbul", "Delhi", "Jakarta", "Cairo"];
+    const countries = ["Pakistan", "UAE", "Turkey", "India", "Indonesia", "Egypt"];
+    const colorsList = ["Fair", "Wheatish", "Medium", "Light Brown", "Golden", "Olive"];
+    const firstNames = ["Ayesha", "Zain", "Fatima", "Hassan", "Iman", "Rayan", "Sara", "Bilal", "Mariam", "Omar", "Anum", "Hamza", "Laiba", "Usman", "Hania", "Talha"];
+    
+    function getRandomProfile(id) {
+        const age = Math.floor(Math.random() * (38 - 20 + 1) + 20);
+        const height = Math.floor(Math.random() * (185 - 150 + 1) + 150);
+        const weight = Math.floor(Math.random() * (95 - 50 + 1) + 50);
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const country = countries[Math.floor(Math.random() * countries.length)];
+        const cast = completeCastList[Math.floor(Math.random() * completeCastList.length)];
+        const color = colorsList[Math.floor(Math.random() * colorsList.length)];
+        const name = firstNames[Math.floor(Math.random() * firstNames.length)] + " " + (Math.random() > 0.6 ? "Khan" : "Ahmed");
+        const phone = `+92${Math.floor(300000000 + Math.random() * 900000000)}`;
+        const qualification = qualificationsList[Math.floor(Math.random() * qualificationsList.length)];
+        return {
+            id: id, name, age, height, weight, city, country, cast, color, phone, qualification,
+            numberRevealed: false, profession: ["Doctor","Engineer","Teacher","Business","Designer"][Math.floor(Math.random()*5)]
+        };
+    }
+
+    // Initialize with 30 random profiles for better pagination (at least 3 pages)
+    for (let i = 1; i <= 30; i++) profiles.push(getRandomProfile(i));
+
+    // DOM elements
+    const coinSpan = document.getElementById('coinBalance');
+    const profilesGridDiv = document.getElementById('profilesGrid');
+    const resultCountDisplay = document.getElementById('resultCountDisplay');
+    const addCoinsBtn = document.getElementById('addCoinsBtn');
+    const paginationDiv = document.getElementById('paginationContainer');
+    
+    // Filters
+    const minAgeInput = document.getElementById('minAge');
+    const maxAgeInput = document.getElementById('maxAge');
+    const colorFilterInput = document.getElementById('colorFilter');
+    const heightFilterInput = document.getElementById('heightFilter');
+    const weightFilterInput = document.getElementById('weightFilter');
+    const cityFilterInput = document.getElementById('cityFilter');
+    const countryFilterInput = document.getElementById('countryFilter');
+    const castFilterSelect = document.getElementById('castFilter');
+    const qualificationFilterInput = document.getElementById('qualificationFilter');
+    const resetBtn = document.getElementById('resetFiltersBtn');
+    
+    // Add Post fields
+    const newName = document.getElementById('newName');
+    const newAge = document.getElementById('newAge');
+    const newColor = document.getElementById('newColor');
+    const newHeight = document.getElementById('newHeight');
+    const newWeight = document.getElementById('newWeight');
+    const newCity = document.getElementById('newCity');
+    const newCountry = document.getElementById('newCountry');
+    const newCast = document.getElementById('newCast');
+    const newProfession = document.getElementById('newProfession');
+    const newQualification = document.getElementById('newQualification');
+    const newPhone = document.getElementById('newPhone');
+    const submitBtn = document.getElementById('submitRishtaBtn');
+
+    // Populate all cast dropdowns dynamically
+    function populateCastDropdowns() {
+        newCast.innerHTML = '<option value="">Select Cast</option>';
+        completeCastList.forEach(cast => {
+            newCast.innerHTML += `<option value="${cast}">${cast}</option>`;
+        });
+        castFilterSelect.innerHTML = '<option value="">All Casts</option>';
+        completeCastList.forEach(cast => {
+            castFilterSelect.innerHTML += `<option value="${cast}">${cast}</option>`;
+        });
+    }
+    populateCastDropdowns();
+
+    function showToast(message, isError = false) {
+        let existing = document.querySelector('.toast-msg');
+        if(existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.style.background = isError ? '#8b3c2c' : '#2c5a2e';
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2800);
+    }
+
+    function updateCoinUI() { coinSpan.innerText = userCoins; }
+
+    // Reveal number with coin deduction
+    function revealNumber(profileId) {
+        const profile = profiles.find(p => p.id === profileId);
+        if (!profile) return;
+        if (profile.numberRevealed) { showToast("Number already visible!", false); return; }
+        if (userCoins >= 100) {
+            userCoins -= 100;
+            profile.numberRevealed = true;
+            updateCoinUI();
+            applyFiltersAndRender(); 
+            showToast(`📞 Number unlocked! ${profile.phone.slice(0,4)}****${profile.phone.slice(-4)}`, false);
+        } else {
+            showToast(`❌ Need 100 Coins (₹100). Add coins first!`, true);
+        }
+    }
+
+    // Add coins
+    function addCoins() { userCoins += 100; updateCoinUI(); showToast(`+100 Coins added! Balance: ${userCoins} Coins`, false); }
+    addCoinsBtn.addEventListener('click', addCoins);
+
+    // ---- Add New Rishta (BHEJO) - ALL FIELDS REQUIRED + 100 COINS DEDUCTION ----
+    function addNewRishta() {
+        // Validate all required fields
+        if (!newName.value.trim()) { showToast("Please enter Full Name", true); return; }
+        if (!newAge.value || parseInt(newAge.value) <= 0) { showToast("Please enter valid Age", true); return; }
+        if (!newColor.value.trim()) { showToast("Please enter Color/Complexion", true); return; }
+        if (!newHeight.value || parseInt(newHeight.value) <= 0) { showToast("Please enter Height", true); return; }
+        if (!newWeight.value || parseInt(newWeight.value) <= 0) { showToast("Please enter Weight", true); return; }
+        if (!newCity.value.trim()) { showToast("Please enter City", true); return; }
+        if (!newCountry.value.trim()) { showToast("Please enter Current Country", true); return; }
+        if (!newCast.value) { showToast("Please select Cast", true); return; }
+        if (!newProfession.value.trim()) { showToast("Please enter Profession", true); return; }
+        if (!newQualification.value.trim()) { showToast("Please enter Qualification", true); return; }
+        if (!newPhone.value.trim()) { showToast("Please enter Phone Number", true); return; }
+        
+        // Check if user has enough coins (100 coins required to post)
+        if (userCoins < 100) {
+            showToast(`❌ Insufficient coins! Need 100 Coins to post Rishta. Add coins first.`, true);
+            return;
+        }
+        
+        // Deduct 100 coins for posting
+        userCoins -= 100;
+        updateCoinUI();
+        
+        const newId = Date.now();
+        const newProfile = {
+            id: newId,
+            name: newName.value.trim(),
+            age: parseInt(newAge.value),
+            color: newColor.value.trim(),
+            height: parseInt(newHeight.value),
+            weight: parseInt(newWeight.value),
+            city: newCity.value.trim(),
+            country: newCountry.value.trim(),
+            cast: newCast.value,
+            profession: newProfession.value.trim(),
+            qualification: newQualification.value.trim(),
+            phone: newPhone.value.trim(),
+            numberRevealed: false
+        };
+        profiles.unshift(newProfile);
+        // Clear form
+        newName.value = ''; newAge.value = ''; newColor.value = ''; newHeight.value = ''; newWeight.value = '';
+        newCity.value = ''; newCountry.value = ''; newProfession.value = ''; newQualification.value = ''; newPhone.value = '';
+        newCast.value = '';
+        showToast(`✅ New Rishta posted! 100 Coins deducted. Number is hidden. Unhide with 100 coins.`, false);
+        currentPage = 1;
+        applyFiltersAndRender();
+    }
+    submitBtn.addEventListener('click', addNewRishta);
+
+    // Filtered logic (including qualification)
+    function getFilteredProfiles() {
+        const minAge = parseInt(minAgeInput.value) || 0;
+        const maxAge = parseInt(maxAgeInput.value) || 100;
+        const colorQuery = colorFilterInput.value.trim().toLowerCase();
+        const minHeight = parseInt(heightFilterInput.value) || 0;
+        const maxWeight = parseInt(weightFilterInput.value) || 999;
+        const cityQuery = cityFilterInput.value.trim().toLowerCase();
+        const countryQuery = countryFilterInput.value.trim().toLowerCase();
+        const castQuery = castFilterSelect.value;
+        const qualificationQuery = qualificationFilterInput.value.trim().toLowerCase();
+        
+        return profiles.filter(p => {
+            if (p.age < minAge || p.age > maxAge) return false;
+            if (colorQuery && !p.color.toLowerCase().includes(colorQuery)) return false;
+            if (minHeight > 0 && p.height < minHeight) return false;
+            if (maxWeight < 999 && p.weight > maxWeight) return false;
+            if (cityQuery && !p.city.toLowerCase().includes(cityQuery)) return false;
+            if (countryQuery && !p.country.toLowerCase().includes(countryQuery)) return false;
+            if (castQuery && p.cast !== castQuery) return false;
+            if (qualificationQuery && !p.qualification.toLowerCase().includes(qualificationQuery)) return false;
+            return true;
+        });
+    }
+
+    // Pagination rendering - shows 1,2,3,4,5 buttons
+    function renderPagination(totalItems) {
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+        if (totalPages <= 1) { paginationDiv.innerHTML = ''; return; }
+        
+        // Show up to 5 page buttons (1,2,3,4,5)
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+        if (endPage - startPage < 4) {
+            startPage = Math.max(1, endPage - 4);
+        }
+        
+        let pagesHtml = '';
+        for (let i = startPage; i <= endPage; i++) {
+            pagesHtml += `<button class="page-btn ${currentPage === i ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        }
+        paginationDiv.innerHTML = pagesHtml;
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                currentPage = parseInt(btn.getAttribute('data-page'));
+                applyFiltersAndRender();
+            });
+        });
+    }
+
+    // Render profiles with pagination + unhide buttons (qualification shown)
+    function renderFilteredProfiles() {
+        const filteredAll = getFilteredProfiles();
+        const totalItems = filteredAll.length;
+        resultCountDisplay.innerText = `Showing ${totalItems} Rishtay ❤️`;
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+        let startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+        let paginated = filteredAll.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+        
+        if (paginated.length === 0 && totalItems > 0 && currentPage > totalPages) {
+            currentPage = totalPages;
+            startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+            paginated = filteredAll.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+        }
+        if (paginated.length === 0) {
+            profilesGridDiv.innerHTML = `<div class="empty-state"><i class="fas fa-heart-broken fa-3x"></i><h3>No Rishtay Found</h3><p>Adjust filters or add a new rishta</p></div>`;
+            renderPagination(totalItems);
+            return;
+        }
+        
+        profilesGridDiv.innerHTML = paginated.map(profile => {
+            const isRevealed = profile.numberRevealed;
+            const displayNumber = isRevealed ? profile.phone : '••••••••••';
+            const numberClass = !isRevealed ? 'hidden-number' : '';
+            const buttonDisabled = isRevealed ? 'active' : '';
+            const buttonText = isRevealed ? '<i class="fas fa-eye"></i> Revealed' : '<i class="fas fa-lock"></i> Unhide (100 Coins)';
+            return `
+                <div class="profile-card" data-id="${profile.id}">
+                    <div class="card-header">
+                        <div class="avatar">${profile.name.charAt(0)}</div>
+                        <div class="basic-info"><h3>${profile.name}</h3><p><i class="fas fa-briefcase"></i> ${profile.profession}</p></div>
+                    </div>
+                    <div class="details-list">
+                        <span class="detail-badge"><i class="fas fa-calendar-alt"></i> ${profile.age} yrs</span>
+                        <span class="detail-badge"><i class="fas fa-ruler"></i> ${profile.height} cm</span>
+                        <span class="detail-badge"><i class="fas fa-weight"></i> ${profile.weight} kg</span>
+                        <span class="detail-badge"><i class="fas fa-palette"></i> ${profile.color}</span>
+                        <span class="detail-badge"><i class="fas fa-users"></i> ${profile.cast}</span>
+                        <span class="detail-badge"><i class="fas fa-city"></i> ${profile.city}, ${profile.country}</span>
+                        <span class="detail-badge"><i class="fas fa-graduation-cap"></i> ${profile.qualification}</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="phone-number ${numberClass}"><i class="fas fa-phone-alt"></i> ${displayNumber}</div>
+                        <button class="unhide-btn ${buttonDisabled}" data-id="${profile.id}">${buttonText}</button>
+                    </div>
+                    <div class="coin-required"><i class="fas fa-info-circle"></i> 1 Number = 100 Coins</div>
+                    <div class="support-note"><i class="fas fa-headset"></i> Edit requires Customer Support</div>
+                </div>
+            `;
+        }).join('');
+        
+        // attach events
+        document.querySelectorAll('.unhide-btn').forEach(btn => {
+            if(btn.classList.contains('active')) return;
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = btn.closest('.profile-card');
+                const pid = parseInt(card.getAttribute('data-id'));
+                revealNumber(pid);
+            });
+        });
+        renderPagination(totalItems);
+    }
+    
+    function applyFiltersAndRender() {
+        renderFilteredProfiles();
+    }
+    
+    // Filters event listeners
+    const filterInputsAll = [minAgeInput, maxAgeInput, colorFilterInput, heightFilterInput, weightFilterInput, cityFilterInput, countryFilterInput, castFilterSelect, qualificationFilterInput];
+    filterInputsAll.forEach(inp => {
+        inp.addEventListener('input', () => { currentPage = 1; applyFiltersAndRender(); });
+        inp.addEventListener('change', () => { currentPage = 1; applyFiltersAndRender(); });
+    });
+    resetBtn.addEventListener('click', () => {
+        minAgeInput.value = 18; maxAgeInput.value = 45; colorFilterInput.value = ''; heightFilterInput.value = '';
+        weightFilterInput.value = ''; cityFilterInput.value = ''; countryFilterInput.value = ''; castFilterSelect.value = '';
+        qualificationFilterInput.value = '';
+        currentPage = 1;
+        applyFiltersAndRender();
+        showToast("All filters reset", false);
+    });
+    
+    updateCoinUI();
+    applyFiltersAndRender();
+</script>
+</body>
+</html>
